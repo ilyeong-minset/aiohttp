@@ -52,7 +52,7 @@ spec:
                 app: postgres
         spec: 
             containers:
-            - image: postgres
+            - image: chaowenguo/postgres:latest
               name: postgres
               env:
               - name: POSTGRES_PASSWORD 
