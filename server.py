@@ -3,9 +3,9 @@ import os, pathlib, asyncpg, json, functools
 
 async def database(app):
     app.setdefault('database', await asyncpg.create_pool(host='postgres', user='postgres', database='postgres', password='postgres'))  
-    async with app.get('database').acquire() as connection: await connection.execute(pathlib.Path(__file__).resolve().parent.joinpath('database.sql').read_text())
+    #async with app.get('database').acquire() as connection: await connection.execute(pathlib.Path(__file__).resolve().parent.joinpath('database.sql').read_text())
     yield
-    async with app.get('database').acquire() as connection: await connection.execute('drop table productItem, productUnit, productReview')
+    #async with app.get('database').acquire() as connection: await connection.execute('drop table productItem, productUnit, productReview')
     await app.get('database').close()
 
 async def post(request):
