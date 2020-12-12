@@ -57,10 +57,10 @@ spec:
               env:
               - name: POSTGRES_PASSWORD 
                 value: postgres
-              volumeMounts:
-              - name: postgres-persistent-storage
-                mountPath: /var/lib/postgresql/data
-                subPath: postgres
+              #volumeMounts:
+              #- name: postgres-persistent-storage
+              #  mountPath: /var/lib/postgresql/data
+              #  subPath: postgres
             volumes:
             - name: postgres-persistent-storage
               persistentVolumeClaim:
