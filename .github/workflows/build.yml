@@ -18,7 +18,13 @@ jobs:
         - uses: docker/build-push-action@master
           with:
               push: true
+              file: web.Dockerfile
               tags: chaowenguo/aiohttp:latest
+        - uses: docker/build-push-action@master
+          with:
+              push: true
+              file: db.Dockerfile
+              tags: chaowenguo/postgres:latest
         - uses: okteto/login@master
           with:
               token: ${{secrets.OKTETO}}
