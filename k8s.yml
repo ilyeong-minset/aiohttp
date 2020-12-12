@@ -37,7 +37,6 @@ spec:
   - http:
       paths:
       - path: /
-        pathType: Prefix
         backend:
           serviceName: aiohttp
           servicePort: 80
