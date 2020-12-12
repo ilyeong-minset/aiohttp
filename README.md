@@ -403,4 +403,4 @@ class TimerHandle(Handle):
 执行 _ready 里的每一个 callback
 这一篇文章我们从用户的角度看了怎么创建事件循环，怎么让事件循环运行，怎么向事件循环注册 callback 以尽快或者将来调用。
 
-然后我们从 Python 的源码看了事件循环的大概实现：当我们调用那些注册 callback 或者 run_forever 的时候，Python 内部具体做了什么。我们理解了事件循环做了什么以及怎么做的。
+然后我们从 Python 的源码看了事件循环的大概实现：当我们调用那些注册 callback 或者 run_forever 的时候，Python 内部具体做了什么。我们理解了事件循环做了什么以及怎么做的
