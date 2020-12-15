@@ -98,10 +98,10 @@ spec:
         metadata:
             labels:
                 app: redis
-    spec:
-        containers:
-        - image: redis
-          name: redis
+        spec:
+            containers:
+            - image: redis
+              name: redis
 ---
 apiVersion: v1
 kind: Service
