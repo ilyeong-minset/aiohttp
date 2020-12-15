@@ -1,11 +1,13 @@
 from aiohttp import web, WSMsgType
 import os, pathlib, asyncpg, json, functools
+import aiohttp_cache
 
 async def database(app):
     app.setdefault('database', await asyncpg.create_pool(host='postgres', user='postgres', database='postgres', password='postgres'))  
     yield
     await app.get('database').close()
 
+@aiohttp_cache.cache()
 async def post(request):
     body = await request.json()
     body = ' '.join(' '.join((key, str(value))) for key,value in body.items())
@@ -44,6 +46,7 @@ async def chat(request):
     return websocket
 
 app = web.Application()
+aiohttp_cache.setup_cache(app, cache_type='redis', backend_config=aiohttp_cache.RedisConfig('redis'))
 app.add_routes([web.get('/', lambda _: web.FileResponse(pathlib.Path(__file__).resolve().parent / 'index.html')),
                 web.post('/ajax', post),
                 web.get('/ws', chat),
