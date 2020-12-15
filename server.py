@@ -46,7 +46,7 @@ async def chat(request):
     return websocket
 
 app = web.Application()
-aiohttp_cache.setup_cache(app, 'redis', key_patternen=(aiohttp_cache.AvailableKeys.json), crypt_key=False, backend_config=aiohttp_cache.RedisConfig('redis'))
+aiohttp_cache.setup_cache(app, 'redis', key_pattern=(aiohttp_cache.AvailableKeys.json), crypt_key=False, backend_config=aiohttp_cache.RedisConfig('redis'))
 app.add_routes([web.get('/', lambda _: web.FileResponse(pathlib.Path(__file__).resolve().parent / 'index.html')),
                 web.post('/ajax', post),
                 web.get('/ws', chat),
