@@ -49,4 +49,4 @@ jobs:
         if: github.event_name == 'schedule'
         steps:
         - run: 
-              curl https://aiohttp-chaowenguo.cloud.okteto.net
+              curl -s -o /dev/null https://aiohttp-chaowenguo.cloud.okteto.net
