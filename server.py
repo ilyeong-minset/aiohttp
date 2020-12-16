@@ -1,5 +1,5 @@
-from aiohttp import web, WSMsgType
-import os, pathlib, asyncpg, json, functools
+from aiohttp import web
+import os, pathlib, asyncpg, json
 import aredis
 
 async def database(app):
