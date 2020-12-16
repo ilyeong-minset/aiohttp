@@ -2,6 +2,7 @@ on: push
 jobs:
     build:
         runs-on: ubuntu-latest
+        if: github.event_name == 'push'
         steps:
         - uses: actions/checkout@master
         - uses: actions/setup-python@master
