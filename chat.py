@@ -37,4 +37,4 @@ app.add_routes([web.get('/', lambda _: web.FileResponse(pathlib.Path(__file__).r
                 web.get('/ws', chat),
                 web.static('/', pathlib.Path(__file__).resolve().parent)])
 app.cleanup_ctx.append(websocket)
-web.run_app(app)
+web.run_app(app, port=8081)
