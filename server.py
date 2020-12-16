@@ -1,17 +1,20 @@
 from aiohttp import web, WSMsgType
 import os, pathlib, asyncpg, json, functools
-import aiohttp_cache
+import aredis
 
 async def database(app):
-    app.setdefault('database', await asyncpg.create_pool(host='postgres', user='postgres', database='postgres', password='postgres'))  
+    app.setdefault('database', await asyncpg.create_pool(host='postgres', user='postgres', database='postgres', password='postgres'))
+    app.setdefault('cache', aredis.StrictRedis('redis').cache('cache'))
     yield
     await app.get('database').close()
 
-@aiohttp_cache.cache()
 async def post(request):
     body = await request.json()
     body = ' '.join(' '.join((key, str(value))) for key,value in body.items())
-    async with request.app.get('database').acquire() as connection: records = await connection.fetch(f'select * from{body}')
+    records = await request.app.get('cache').get(body)
+    if not records:
+        async with request.app.get('database').acquire() as connection: records = await connection.fetch(f'select * from{body}')
+        await request.app.get('cache').set(body, records)
     return web.json_response([*map(dict, records)], dumps=functools.partial(json.dumps, default=str))
 
 async def websocket(app):
@@ -46,7 +49,6 @@ async def chat(request):
     return websocket
 
 app = web.Application()
-aiohttp_cache.setup_cache(app, 'redis', key_pattern=(aiohttp_cache.AvailableKeys.json,), backend_config=aiohttp_cache.RedisConfig('redis'))
 app.add_routes([web.get('/', lambda _: web.FileResponse(pathlib.Path(__file__).resolve().parent / 'index.html')),
                 web.post('/ajax', post),
                 web.get('/ws', chat),
