@@ -19,30 +19,13 @@ apiVersion: v1
 kind: Service
 metadata:
     name: aiohttp
+    annotations:
+        dev.okteto.com/auto-ingress: 'true'
 spec:
     selector:
         app: aiohttp
     ports:
     - port: 8080
----
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-metadata:
-    name: ingress
-    annotations:
-        dev.okteto.com/generate-host: 'true'
-spec:
-    rules:
-    - http:
-          paths:
-          - path: /chat/*
-            backend:
-                serviceName: chat
-                servicePort: 8081
-          - path: /*
-            backend:
-                serviceName: aiohttp
-                servicePort: 8080
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim        # Create a PersistentVolumeClaim to request a PersistentVolume storage
@@ -138,6 +121,8 @@ apiVersion: v1
 kind: Service
 metadata:
     name: chat
+    annotations:
+        dev.okteto.com/auto-ingress: 'true'
 spec:
     selector:
         app: chat
