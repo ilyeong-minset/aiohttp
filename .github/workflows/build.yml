@@ -41,3 +41,8 @@ jobs:
         - uses: okteto/apply@master
           with:
               manifest: k8s.yml
+    call:
+        runs-on: ubuntu-latest
+        steps:
+        - run: 
+              curl https://aiohttp-chaowenguo.cloud.okteto.net
