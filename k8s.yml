@@ -35,7 +35,7 @@ spec:
     rules:
     - http:
           paths:
-          - path: /
+          - path: /aiohttp
             backend:
                 serviceName: aiohttp
                 servicePort: 8080
