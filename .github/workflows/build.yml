@@ -46,6 +46,7 @@ jobs:
               manifest: k8s.yml
     call:
         runs-on: ubuntu-latest
+        if: github.event_name == 'schedule'
         steps:
         - run: 
               curl https://aiohttp-chaowenguo.cloud.okteto.net
