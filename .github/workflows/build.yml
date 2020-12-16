@@ -27,8 +27,8 @@ jobs:
               tags: chaowenguo/postgres:latest
         - uses: docker/build-push-action@master
           with:
+              context: /chat
               push: true
-              file: chat/Dockerfile
               tags: chaowenguo/chat:latest
         - uses: okteto/login@master
           with:
