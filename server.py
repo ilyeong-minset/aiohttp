@@ -21,5 +21,5 @@ app = web.Application()
 app.add_routes([web.get('/', lambda _: web.FileResponse(pathlib.Path(__file__).resolve().parent / 'index.html')),
                 web.post('/ajax', post),
                 web.static('/', pathlib.Path(__file__).resolve().parent)])
-app.cleanup_ctx.extend((database, websocket))
+app.cleanup_ctx.append(database)
 web.run_app(app)
