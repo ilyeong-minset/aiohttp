@@ -5,7 +5,6 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
-        if: github.event_name == 'push'
         steps:
         - uses: actions/checkout@master
         - uses: actions/setup-python@master
@@ -44,8 +43,3 @@ jobs:
         - uses: okteto/apply@master
           with:
               manifest: k8s.yml
-    call:
-        runs-on: ubuntu-latest
-        if: github.event_name == 'schedule'
-        steps:
-        - run: curl -s -o /dev/null https://aiohttp-chaowenguo.cloud.okteto.net
