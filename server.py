@@ -13,9 +13,9 @@ async def post(request):
     body = ' '.join(' '.join((key, str(value))) for key,value in body.items())
     records = await request.app.get('cache').get(body)
     if not records:
-        async with request.app.get('database').acquire() as connection: records = [*map(dict, await connection.fetch(f'select * from{body}'))]
+        async with request.app.get('database').acquire() as connection: records = json.dumps([*map(dict, await connection.fetch(f'select * from{body}'))], default=str)
         await request.app.get('cache').set(body, records)
-    return web.json_response(records, dumps=functools.partial(json.dumps, default=str))
+    return web.Response(text=records)
 
 async def websocket(app):
     app.setdefault('websocket', set())
