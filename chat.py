@@ -1,5 +1,5 @@
 from aiohttp import web, WSMsgType
-import os, pathlib, asyncpg, json, functools
+import os, pathlib
 
 async def websocket(app):
     app.setdefault('websocket', set())
