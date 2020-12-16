@@ -33,7 +33,7 @@ async def chat(request):
     return websocket
 
 app = web.Application()
-app.add_routes([web.get('/', lambda _: web.FileResponse(pathlib.Path(__file__).resolve().parent / 'chat.html')),
+app.add_routes([web.get('/', lambda _: web.FileResponse(pathlib.Path(__file__).resolve().parent / 'index.html')),
                 web.get('/ws', chat),
                 web.static('/', pathlib.Path(__file__).resolve().parent)])
 app.cleanup_ctx.append(websocket)
