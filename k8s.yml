@@ -132,7 +132,7 @@ spec:
         spec:
             containers:
             - image: chaowenguo/chat:latest
-              name: aiohttp
+              name: chat
 ---
 apiVersion: v1
 kind: Service
