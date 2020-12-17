@@ -25,6 +25,9 @@ spec:
     type: LoadBalancer
     ports:
     - port: 8080
+      name: first
+    - port: 12345
+      name: second
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
