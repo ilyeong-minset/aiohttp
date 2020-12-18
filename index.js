@@ -289,6 +289,7 @@ globalThis.customElements.define('nav-a',
     :host
     {
         display:flex;
+        flex-wrap:no-wrap;
         align-items:center;
         height:39px;
         padding-left:15px;
