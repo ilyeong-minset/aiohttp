@@ -1,6 +1,7 @@
 from aiohttp import web
-import pathlib, asyncpg, json
-import aredis
+import pathlib, asyncpg, json, aredis
+import asyncio, uvloop
+asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 async def database(app):
     app.setdefault('database', await asyncpg.create_pool(host='postgres', user='postgres', database='postgres', password='postgres'))
