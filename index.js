@@ -322,7 +322,7 @@ globalThis.customElements.define('nav-a',
 <a href='registries.html'>Registry</a>
 <a href='foundit.html'>#FoundItOnAmazon</a>
 <a href='shoppertoolkit.html'>Shopper Toolkit</a>
-<a style='flex-grow:1; justify-self:end'>Shop Holiday Gift Guides</a>`
+<a style='flex-grow:1; text-align:right'>Shop Holiday Gift Guides</a>`
 	}
     })
 
