@@ -1,5 +1,7 @@
 from aiohttp import web, WSMsgType
 import pathlib
+import asyncio, uvloop
+asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 async def websocket(app):
     app.setdefault('websocket', set())
