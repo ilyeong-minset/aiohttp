@@ -22,7 +22,6 @@ metadata:
 spec:
     selector:
         app: aiohttp
-    type: LoadBalancer
     ports:
     - port: 8080
 ---
@@ -142,6 +141,5 @@ metadata:
 spec:
     selector:
         app: chat
-    type: LoadBalancer
     ports:
     - port: 8080
