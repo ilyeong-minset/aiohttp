@@ -44,5 +44,5 @@ jobs:
           with:
               manifest: k8s.yml
         - run: |
-             ls /home/runner/work/_temp/_github_home
+             ls -al /home/runner/work/_temp/_github_home
              #kubectl -n chaowenguo rollout restart deploy
