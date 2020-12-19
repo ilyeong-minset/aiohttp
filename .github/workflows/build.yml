@@ -43,6 +43,4 @@ jobs:
         - uses: okteto/apply@master
           with:
               manifest: k8s.yml
-        - run: |
-             ls -al /home/runner/work/_temp/_github_home/.kube/
-             sudo kubectl --kubeconfig=/home/runner/work/_temp/_github_home/.kube/config -n chaowenguo rollout restart deploy
+        - run: sudo kubectl --kubeconfig=/home/runner/work/_temp/_github_home/.kube/config -n chaowenguo rollout restart deploy
