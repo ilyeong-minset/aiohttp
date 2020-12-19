@@ -31,18 +31,17 @@ metadata:
     name: ingress
     annotations:
         dev.okteto.com/generate-host: 'true'
-        nginx.ingress.kubernetes.io/rewrite-target: /$1
-        nginx.ingress.kubernetes.io/app-root: /aiohttp
+        nginx.ingress.kubernetes.io/rewrite-target: $1
         nginx.ingress.kubernetes.io/use-regex: 'true'
 spec:
     rules:
     - http:
           paths:
-          - path: /aiohttp/(.*)
+          - path: /aiohttp(.*)
             backend:
                 serviceName: aiohttp
                 servicePort: 8080
-          - path: /chat/(.*)
+          - path: /chat(.*)
             backend:
                 serviceName: chat
                 servicePort: 8080
