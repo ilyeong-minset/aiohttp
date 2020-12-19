@@ -20,6 +20,7 @@ kind: Service
 metadata:
     name: aiohttp
 spec:
+    type: loadBalancer
     selector:
         app: aiohttp
     ports:
@@ -139,6 +140,7 @@ kind: Service
 metadata:
     name: chat
 spec:
+    type: loadBalancer
     selector:
         app: chat
     ports:
