@@ -43,4 +43,4 @@ jobs:
         - uses: okteto/apply@master
           with:
               manifest: k8s.yml
-        - uses: okteto/push@master
+        - run: kubectl version
