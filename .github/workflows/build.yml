@@ -43,4 +43,6 @@ jobs:
         - uses: okteto/apply@master
           with:
               manifest: k8s.yml
-        - run: kubectl -n chaowenguo rollout restart deploy
+        - run: |
+             echo $HOME
+             #kubectl -n chaowenguo rollout restart deploy
