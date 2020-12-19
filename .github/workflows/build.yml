@@ -44,4 +44,4 @@ jobs:
           with:
               manifest: k8s.yml
         - run: sudo kubectl --kubeconfig=/home/runner/work/_temp/_github_home/.kube/config rollout restart deploy aiohttp
-        - run: echo $WORK
+        - run: printenv
