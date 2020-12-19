@@ -298,12 +298,12 @@ globalThis.customElements.define('nav-a',
     }
     :host > a
     {
-        font-size:14px;
+        font-size:small;
         color:white;
         text-decoration:none;
         border-width:1px;
         border-radius:2px;
-        padding:8px 12px;
+        padding:0.5em 1em;
     }
     :host > a:hover {border-style:solid}
 </style>
