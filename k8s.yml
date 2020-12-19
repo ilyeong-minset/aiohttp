@@ -20,7 +20,6 @@ kind: Service
 metadata:
     name: aiohttp
 spec:
-    type: loadBalancer
     selector:
         app: aiohttp
     ports:
@@ -32,6 +31,7 @@ metadata:
     name: ingress
     annotations:
         dev.okteto.com/generate-host: 'true'
+        nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
     rules:
     - http:
@@ -140,7 +140,6 @@ kind: Service
 metadata:
     name: chat
 spec:
-    type: loadBalancer
     selector:
         app: chat
     ports:
