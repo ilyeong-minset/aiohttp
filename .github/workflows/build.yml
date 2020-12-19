@@ -6,29 +6,29 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-        - uses: actions/checkout@master
-        - uses: actions/setup-python@master
+        - uses: actions/checkout@main
+        - uses: actions/setup-python@main
           with:
               python-version: '3.x'
         - run: |
               pip install aiohttp
               python build.py ${{secrets.GITHUB}}
-        - uses: docker/login-action@master
+        - uses: docker/login-action@main
           with:
               username: chaowenguo
               password: ${{secrets.DOCKER}}
-        - uses: docker/setup-buildx-action@master
-        - uses: docker/build-push-action@master
+        - uses: docker/setup-buildx-action@main
+        - uses: docker/build-push-action@main
           with:
               push: true
               tags: chaowenguo/aiohttp:latest
-        - uses: docker/build-push-action@master
+        - uses: docker/build-push-action@main
           with:
               push: true
               context: database
               file: database/Dockerfile
               tags: chaowenguo/postgres:latest
-        - uses: docker/build-push-action@master
+        - uses: docker/build-push-action@main
           with:
               push: true
               context: chat
