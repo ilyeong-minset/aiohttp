@@ -45,5 +45,5 @@ jobs:
               manifest: k8s.yml
         - run: |
              echo $HOME
-             ls /github/home/.kube/config
+             ls /github/home/.kube
              #kubectl -n chaowenguo rollout restart deploy
