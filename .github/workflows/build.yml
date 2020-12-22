@@ -35,11 +35,6 @@ jobs:
               context: chat
               file: chat/Dockerfile
               tags: chaowenguo/chat:latest
-    deploy:
-        needs: build
-        runs-on: ubuntu-latest
-        steps:
-        - uses: actions/checkout@main
         - uses: okteto/login@master
           with:
               token: ${{secrets.OKTETO}}
@@ -49,4 +44,14 @@ jobs:
         - uses: okteto/apply@master
           with:
               manifest: k8s.yml
+    deploy:
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+        - uses: okteto/login@master
+          with:
+              token: ${{secrets.OKTETO}}
+        - uses: okteto/namespace@master
+          with:
+              namespace: chaowenguo    
         - run: sudo kubectl --kubeconfig=$RUNNER_TEMP/_github_home/.kube/config rollout restart deploy aiohttp
