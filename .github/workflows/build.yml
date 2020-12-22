@@ -45,5 +45,7 @@ jobs:
           with:
               manifest: k8s.yml
     kill:
-        - needs: build
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
         - run: sudo kubectl --kubeconfig=$RUNNER_TEMP/_github_home/.kube/config rollout restart deploy aiohttp
