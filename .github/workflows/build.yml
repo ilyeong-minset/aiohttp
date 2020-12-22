@@ -4,32 +4,38 @@ on:
     - cron: '0 6,18 * * *'
 jobs:
     build:
-        if: github.event_name == 'push'
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@main
+          if: github.event_name == 'push'
         - uses: actions/setup-python@main
+          if: github.event_name == 'push'
           with:
               python-version: '3.x'
         - run: |
               pip install aiohttp
               python build.py ${{secrets.GITHUB}}
         - uses: docker/login-action@master
+          if: github.event_name == 'push'
           with:
               username: chaowenguo
               password: ${{secrets.DOCKER}}
         - uses: docker/setup-buildx-action@master
+          if: github.event_name == 'push'
         - uses: docker/build-push-action@master
+          if: github.event_name == 'push'
           with:
               push: true
               tags: chaowenguo/aiohttp:latest
         - uses: docker/build-push-action@master
+          if: github.event_name == 'push'
           with:
               push: true
               context: database
               file: database/Dockerfile
               tags: chaowenguo/postgres:latest
         - uses: docker/build-push-action@master
+          if: github.event_name == 'push'
           with:
               push: true
               context: chat
@@ -42,18 +48,7 @@ jobs:
           with:
               namespace: chaowenguo
         - uses: okteto/apply@master
+          if: github.event_name == 'push'
           with:
               manifest: k8s.yml
-    deploy:
-        needs: build
-        runs-on: ubuntu-latest
-        steps:
-        - uses: okteto/login@master
-          if: github.event_name != 'push'
-          with:
-              token: ${{secrets.OKTETO}}
-        - uses: okteto/namespace@master
-          with:
-          if: github.event_name != 'push'
-              namespace: chaowenguo    
         - run: sudo kubectl --kubeconfig=$RUNNER_TEMP/_github_home/.kube/config rollout restart deploy aiohttp
