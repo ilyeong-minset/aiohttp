@@ -4,6 +4,7 @@ on:
     - cron: '0 6,18 * * *'
 jobs:
     build:
+        if: github.event_name == 'push'
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@main
@@ -43,4 +44,6 @@ jobs:
         - uses: okteto/apply@master
           with:
               manifest: k8s.yml
+    kill:
+        - needs: build
         - run: sudo kubectl --kubeconfig=$RUNNER_TEMP/_github_home/.kube/config rollout restart deploy aiohttp
