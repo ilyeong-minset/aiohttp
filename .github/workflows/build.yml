@@ -1,7 +1,7 @@
 on:
     push:
     schedule:
-    - cron: '10 6,18 * * *'
+    - cron: '15 6,18 * * *'
 jobs:
     build:
         runs-on: ubuntu-latest
