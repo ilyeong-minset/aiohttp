@@ -49,9 +49,11 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - uses: okteto/login@master
+          if: github.event_name != 'push'
           with:
               token: ${{secrets.OKTETO}}
         - uses: okteto/namespace@master
           with:
+          if: github.event_name != 'push'
               namespace: chaowenguo    
         - run: sudo kubectl --kubeconfig=$RUNNER_TEMP/_github_home/.kube/config rollout restart deploy aiohttp
